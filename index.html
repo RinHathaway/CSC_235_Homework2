@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title> Yahtzee </title>
+    <style type="text/css">
+        <!--
+
+        h1 {
+            text-align: center;
+        }
+
+        div.a {
+            text-align: center;
+        }
+
+        table.t {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        td.b {
+            border: 2px #efefef inset;
+            background-color: #AEAFFF;
+            width: 2em;
+        }
+
+        td.c {
+            text-align: right;
+            width: 100px;
+        }
+
+        button.b {
+            color: #F5E6E3;
+            background-color: #5F00CA;
+            margin-right: 20px;
+        }
+
+        -->
+    </style>
+</head>
+
+<body>
+
+    <script language="JavaScript">
+        <!--
+
+        var v = new Array(0, 0, 0, 0, 0)
+        var h = new Array(false, false, false, false, false); // false means not clicked
+        var f = new Array(0, 0, 0, 0, 0, 0, 0);
+        var c = new Array(false, false, false, false, false, false, false); // false means not clicked
+        var total = 0;
+        var rollCount = 0;
+
+      function roll() {
+        
+          if (rollCount < 3) {
+            
+              f[1] = f[2] = f[3] = f[4] = f[5] = f[6] = 0;
+              for (var i = 0; i < 5; i++) {
+                  if (!h[i]) {
+                      var d = document.getElementById("d" + i);
+                      v[i] = Math.floor(6 * Math.random()) + 1
+                      d.src = "pix/dice" + v[i] + ".gif";
+                  }
+                f[v[i]]++;
+              }
+              rollCount++;
+          
+              
+      }
+      }
+
+        function hold(i) {
+            var d = document.getElementById("d" + i);
+            h[i] = !h[i];
+            if (h[i]) {
+                d.src = "pix/diceX" + v[i] + ".gif"
+            } else {
+                d.src = "pix/dice" + v[i] + ".gif"
+            }
+        }
+
+      function scr(i) {
+        if(!c[i]){
+          var d = document.getElementById("s" + i);
+          sum = f[i]*i;
+          d.innerHTML = sum;
+      }
+      }
+     function clr(i){
+       if(!c[i]){
+       var d = document.getElementById("s" + i);
+        d.innerHTML = " ";
+       }
+     } 
+      function clk(i){
+         if(!c[i]){
+        c[i] = true; 
+          totalv();
+          rollCount = 0
+       } 
+      }
+      
+        function kscr(i) {
+            var d = document.getElementById("k" + i);
+            for(var j = 1; j < 7; j++){
+              if(f[j] >= i){
+                d.innerHTML = v[0]+v[1]+v[2]+v[3]+v[4];
+                return;
+                 
+              }
+            }  
+          d.innerHTML = 0;
+        }
+      
+      function kclr(i){
+       if(!c[i]){
+       var d = document.getElementById("k" + i);
+        d.innerHTML = " "
+       };
+       }
+      
+        function kclk(i){
+         c[i] = true; 
+      }
+  
+      function totalv(){
+        var d = document.getElementById("t");
+        total += sum;
+        d.innerHTML = total;
+      }
+      function NewGame(i){
+        v = new Array(0, 0, 0, 0, 0);
+        h = new Array(false, false, false, false, false);
+        f = new Array(0, 0, 0, 0, 0, 0, 0);
+        c = new Array(false, false, false, false, false, false, false);
+        rollCount = 0;
+
+       
+        for (var i = 0; i < 5; i++) {
+            var d = document.getElementById("d" + i);
+            d.src = "pix/dice0.gif";
+        }
+
+    
+        for (var i = 1; i <= 6; i++) {
+            var s = document.getElementById("s" + i);
+            s.innerHTML = "";
+        }
+
+        for (var i = 3; i <= 5; i++) {
+            var k = document.getElementById("k" + i);
+            k.innerHTML = "";
+        }
+      }
+      
+        //-->
+    </script>
+    <h1> Yahtzee </h1>
+    <div class="a">
+        <img id="d0" onClick="hold(0)" src="pix/dice0.gif">
+        <img id="d1" onClick="hold(1)" src="pix/dice0.gif">
+        <img id="d2" onClick="hold(2)" src="pix/dice0.gif">
+        <img id="d3" onClick="hold(3)" src="pix/dice0.gif">
+        <img id="d4" onClick="hold(4)" src="pix/dice0.gif"> </div>
+
+    <br></br>
+    <table class="t">
+        <tr>
+            <td class="a"> 1's </td>
+            <td id="s1" onMouseOver="scr(1);" onClick="clk(1)" onMouseOut="clr(1)" class="b"> </td>
+            <td class="c" rowspan="5"> <button class="b" onClick="roll()"> Roll </button> </td>
+        </tr>
+        <tr>
+          <td class="a"> 2's </td>
+          <td id="s2" onMouseOver="scr(2);" onClick="clk(2)" onMouseOut="clr(2)" class="b"> </td>
+        </tr>
+        <tr>
+            <td class="a"> 3's </td>
+          <td id="s3" onMouseOver="scr(3);" onClick="clk(3)" onMouseOut="clr(3)" class="b"> </td>
+        </tr>
+        <tr>
+            <td class="a"> 4's </td>
+            <<td id="s4" onMouseOver="scr(4);" onClick="clk(4)" onMouseOut="clr(4)" class="b"> </td>
+        </tr>
+        <tr>
+            <td class="a"> 5's </td>
+          <td id="s5" onMouseOver="scr(5);" onClick="clk(5)" onMouseOut="clr(5)" class="b"> </td>
+        </tr>
+        <tr>
+            <td class="a"> 6's </td>
+          <td id="s6" onMouseOver="scr(6);" onClick="clk(6)" onMouseOut="clr(6)" class="b"> </td>
+          <td class="c" rowspan="5"> <button class="c" onclick="NewGame()"> New Game </button></td>
+        </tr>
+        <tr>
+            <td class="a"> 3 of a kind </td>
+            <td id="k3" onMouseOver="kscr(3);" onClick="kclk(3)" onMouseOut="kclr(3)" class="b"> </td>
+            
+        </tr>
+        <tr>
+            <td class="a"> 4 of a kind </td>
+            <td id="k4" onMouseOver="kscr(4);" onClick="kclk(4)" onMouseOut="kclr(4)" class="b"> </td>
+        </tr>
+        <tr>
+            <td class="a"> Yahtzee </td>
+            <td id="k5" onMouseOver="kscr(5);" onClick="kclk(5)" onMouseOut="kclr(5)" class="b"> </td>
+        </tr>
+        <tr>
+            <td class="a"> Total </td>
+          <td id="t" class="b"> </td>
+            
+        </tr>
+    </table>
+</body>
+
+</html>
