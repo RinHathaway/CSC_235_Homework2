@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-
+<!--
+Name: Brian Hathaway
+Course: 235.01
+Homework: #2
+Git-Hub:
+-->
 <html>
 
 <head>
@@ -49,7 +54,7 @@
         var v = new Array(0, 0, 0, 0, 0)
         var h = new Array(false, false, false, false, false); // false means not clicked
         var f = new Array(0, 0, 0, 0, 0, 0, 0);
-        var c = new Array(false, false, false, false, false, false, false); // false means not clicked
+        var c = new Array(false, false, false, false, false, false, false,false,false,false); // false means not clicked
         var total = 0;
         var rollCount = 0;
 
@@ -104,26 +109,35 @@
       }
       
         function kscr(i) {
+          if(!c[i+4]){
             var d = document.getElementById("k" + i);
+            sum =0;
             for(var j = 1; j < 7; j++){
+             
               if(f[j] >= i){
-                d.innerHTML = v[0]+v[1]+v[2]+v[3]+v[4];
+                sum =  v[0]+v[1]+v[2]+v[3]+v[4];
+                d.innerHTML = sum;
                 return;
                  
               }
             }  
           d.innerHTML = 0;
         }
+        }
       
       function kclr(i){
-       if(!c[i]){
+       if(!c[i+4]){
        var d = document.getElementById("k" + i);
         d.innerHTML = " "
-       };
+       }
        }
       
         function kclk(i){
-         c[i] = true; 
+          if(!c[i+4]){
+          c[i+4] = true; 
+          totalv();
+          rollCount = 0
+      }
       }
   
       function totalv(){
@@ -132,11 +146,14 @@
         d.innerHTML = total;
       }
       function NewGame(i){
+        
         v = new Array(0, 0, 0, 0, 0);
         h = new Array(false, false, false, false, false);
         f = new Array(0, 0, 0, 0, 0, 0, 0);
         c = new Array(false, false, false, false, false, false, false);
         rollCount = 0;
+        total = 0;
+        
 
        
         for (var i = 0; i < 5; i++) {
@@ -154,6 +171,7 @@
             var k = document.getElementById("k" + i);
             k.innerHTML = "";
         }
+       
       }
       
         //-->
